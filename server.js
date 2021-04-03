@@ -26,15 +26,17 @@ app.use(express.static('website'));
 
 // Setup Server
 
+app.get("/getdata", (req, res) => {
+    res.send(projectData);
+});
+app.post("/savedata", (req, res) => {
+    projectData.temp = req.body.temp;
+    projectData.date = req.body.date;
+    projectData.feelings = req.body.feelings;
+    res.send("OK");
+});
+
 const port = 8888;
 const server = app.listen(port, function() {
     console.log("server Started, Hi there !");
 });
-app.get("/getdata", (req, res) => {
-    res.send(projectData);
-})
-app.post("/savedate", (req, res) => {
-    projectData.temp = req.body.temp;
-    projectData.date = req.body.date;
-    projectData.feelings = req.body.feelings;
-})
