@@ -5,7 +5,7 @@ const apiKey = "e739516ac81ed980cc7511954ada8827";
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+let newDate = d.getMonth() + 1 + '.' + d.getDate() + '.' + d.getFullYear();
 
 // Event listener to add function to existing HTML DOM element
 document.querySelector("#generate")
@@ -46,19 +46,13 @@ async function saveData(weatherData) {
     };
     const request =
         await fetch("/savedata", {
-            "method": "POST",
-            "credentials": "same-origin",
+            method: "POST",
+            credentials: "same-origin",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
 
         });
     return;
-    // try {
-    //     const data = request.json();
-    //     console.log(data);
-    // } catch (error) {
-    //     console.log(error);
-    // }
 }
 
 /* Function to GET Project Data */
@@ -66,9 +60,9 @@ async function getData() {
     const request = await fetch("/getdata");
     try {
         const data = await request.json();
-        document.querySelector("#date").textContent = data.date;
-        document.querySelector("#temp").textContent = data.temp;
-        document.querySelector("#content").textContent = data.feelings;
+        document.querySelector("#date").innerHTML = data.date;
+        document.querySelector("#temp").innerHTML = data.temp;
+        document.querySelector("#content").innerHTML = data.feelings;
 
         console.log(data);
     } catch (error) {

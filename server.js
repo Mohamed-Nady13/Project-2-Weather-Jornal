@@ -16,19 +16,18 @@ app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 const cors = require("cors");
-//const send = require("send");
 app.use(cors());
 
 // Initialize the main project folder
 
 app.use(express.static('website'));
 
-
 // Setup Server
 
 app.get("/getdata", (req, res) => {
     res.send(projectData);
 });
+
 app.post("/savedata", (req, res) => {
     projectData.temp = req.body.temp;
     projectData.date = req.body.date;
